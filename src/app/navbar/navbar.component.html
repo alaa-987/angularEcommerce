@@ -1,0 +1,44 @@
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+   
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/freshcart-logo.svg">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav fs-4 ms-auto cursor-pointer" *ngIf="isLogin">
+                <a class="nav-link" routerLink="home">Home</a>
+                <a class="nav-link" routerLink="products">Products</a>
+                <a class="nav-link" routerLink="categories">Categories</a>
+                <a class="nav-link" routerLink="brands">Brands</a>
+                <a class="nav-link" routerLink="wish">wish list</a>
+              </div>
+
+                <div class="d-flex align-items-center gap-2 ms-auto">
+                    <a class="nav-link " routerLink="cart" *ngIf="isLogin">
+                        <span class="test-success">{{itemsNav}}</span>
+                        <i class="fa-solid fa-cart-shopping text-warning fs-4 cursor-pointer"></i>
+                    </a>
+  
+                    <a class="nav-link cursor-pointer" routerLink="login" *ngIf="!isLogin">
+                        Sign In
+                    </a>
+                    <a class="nav-link cursor-pointer" routerLink="register" *ngIf="!isLogin">
+                        Register
+                    </a>
+                    <a class="nav-link cursor-pointer"  *ngIf="isLogin" (click)="logout()">
+                        Sign Out
+                    </a>
+                  </div>
+                
+
+            
+            </div>
+          </div>
+
+  </nav>
+

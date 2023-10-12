@@ -1,0 +1,19 @@
+<div class="container py-5 bg-body-tertiary mt-5">
+    <h1 class="py-4 fw-bolder">My Wish List</h1>
+    <div class="row align-items-center mb-5" *ngFor="let pItem of allProduct">
+        <div class="col-md-2">
+            <img [src]="pItem.imageCover" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-4">
+            <p class="fs-4 fw-bold">{{pItem.title}}</p>
+            <p class="fs-3 text-success fw-bold">{{pItem.price}} EGP</p>
+            <i class="fa-solid fa-trash fs-5 text-danger cursor-pointer" (click)="removeWish(pItem._id)"></i>
+        </div>
+        <div class="col-md-3 offset-md-3 d-flex gap-3">
+           <button class=" btn btn-outline-success fs-3" (click)="cartClick(pItem._id)">add To Cart</button>
+        </div>
+    </div>
+</div>
+<div class="loadingScreen" *ngIf="loading">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>

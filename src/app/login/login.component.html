@@ -1,0 +1,138 @@
+
+<div class="w-75 my-5 mx-auto">
+
+    <h1 class="alert alert-danger text-center" *ngIf="errorMessage">{{errorMessage}}</h1>
+     
+    
+        <h2 class="mb-3">Login Now : </h2>
+    
+    
+        <form  (ngSubmit)="loginSubmit(loginForm)" [formGroup]="loginForm" >
+    
+    
+            <div>
+                <label>Email :</label>
+                <input formControlName="email" class="form-control">
+    
+    
+                <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger">     
+                    <p *ngIf="loginForm.get('email')?.errors?.['required']">email is Required field</p>
+                    <p *ngIf="loginForm.get('email')?.errors?.['email']">please enter valid email</p>
+                </div>
+    
+           </div>
+    
+            <div>
+                    <label>password:</label>
+                    <input formControlName="password" class="form-control" type="password">
+            
+            
+                    <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger">     
+                        <p *ngIf="loginForm.get('password')?.errors?.['required']">password is Required field</p>
+                        <p *ngIf="loginForm.get('password')?.errors?.['pattern']">please enter valid password</p>
+                    </div>
+            </div>
+
+    
+            <button *ngIf="!loading" [disabled]="loginForm.invalid" type="submit" class="btn bg-main text-white  ms-auto my-3">login</button>
+            <button type="button" class="btn text-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Forget password
+              </button>
+           
+            <!-- <button *ngIf="loading" class="btn bg-main  text-white">Hiiii</button> -->
+            <div class="loadingScreen" *ngIf="loading">
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+    
+        </form>
+
+        <!-- ===modal==== -->
+    
+  
+  <!-- Modal -->
+  <div class="modal fade MOD" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!-- ===popup=== -->
+            <h3 class="alert alert-danger text-center" *ngIf="modalMessage">{{modalMessage}}</h3>
+            <!-- ====foregt====== -->
+            <form *ngIf="!isCodeForm && !isNewPass" (ngSubmit)="forgetSubmit(forgetForm)" [formGroup]="forgetForm" >
+    
+    
+                <div>
+                    <label>Email :</label>
+                    <input formControlName="email" class="form-control">
+        
+        
+                    <div *ngIf="forgetForm.get('email')?.errors && forgetForm.get('email')?.touched" class="alert alert-danger">     
+                        <p *ngIf="forgetForm.get('email')?.errors?.['required']">email is Required field</p>
+                        <p *ngIf="forgetForm.get('email')?.errors?.['email']">please enter valid email</p>
+                    </div>
+        
+               </div>
+   
+                <button  [disabled]="forgetForm.invalid" type="submit" class="btn bg-main text-white  ms-auto my-3">send to email</button>
+
+            </form>
+            <!-- ====code=== -->
+            <form *ngIf="isCodeForm" (ngSubmit)="codeSubmit(codeForm)" [formGroup]="codeForm" >
+    
+    
+                <div>
+                    <label>Code :</label>
+                    <input formControlName="resetCode" class="form-control">
+        
+        
+                    <div *ngIf="codeForm.get('resetCode')?.errors && codeForm.get('resetCode ')?.touched" class="alert alert-danger">     
+                        <p *ngIf="codeForm.get('resetCode ')?.errors?.['required']">resetCode  is Required field</p>
+                    </div>
+        
+               </div>
+   
+                <button  [disabled]="codeForm.invalid" type="submit" class="btn bg-main text-white  ms-auto my-3">send code</button>
+
+            </form>
+            <!-- ===newpass== -->
+            
+        <form *ngIf="isNewPass" (ngSubmit)="PassSubmit(newForm)" [formGroup]="newForm" >
+    
+    
+            <div>
+                <label>Email :</label>
+                <input formControlName="email" class="form-control">
+    
+    
+                <div *ngIf="newForm.get('email')?.errors && newForm.get('email')?.touched" class="alert alert-danger">     
+                    <p *ngIf="newForm.get('email')?.errors?.['required']">email is Required field</p>
+                    <p *ngIf="newForm.get('email')?.errors?.['email']">please enter valid email</p>
+                </div>
+    
+           </div>
+    
+            <div>
+                    <label>newPassword:</label>
+                    <input formControlName="newPassword" class="form-control" type="password">
+            
+            
+                    <div *ngIf="newForm.get('newPassword')?.errors && newForm.get('newPassword')?.touched" class="alert alert-danger">     
+                        <p *ngIf="newForm.get('newPassword')?.errors?.['required']">newPassword is Required field</p>
+                        <p *ngIf="newForm.get('newPassword')?.errors?.['pattern']">please enter valid newPassword</p>
+                    </div>
+            </div>
+
+    
+            <button [disabled]="newForm.invalid" type="submit" class="btn bg-main text-white  ms-auto my-3">set Password</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    
+    </div>
+    

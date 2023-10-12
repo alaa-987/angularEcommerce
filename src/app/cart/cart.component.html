@@ -1,0 +1,32 @@
+<div class="container bg-body-tertiary py-5 mt-4">
+    <h3 class="text-success text-center py-4">Shopping cart</h3>
+    <div class="d-flex justify-content-between mb-5">
+        <h1 *ngIf="deleteMessage" class="alert altert-danger">{{deleteMessage}}</h1>
+        <h1 class=" text-center" *ngIf="cartNum">{{cartNum}} :items available</h1>
+    </div>
+    <div class="d-flex justify-content-between mb-5 ">
+        <button class="btn btn-danger" (click)="clearCart()">Clear cart</button>
+        <button class="btn bg-main text-white" [routerLink]="['/checkout',cId]">checkOut</button>
+    </div>
+    <div class="row align-items-center mb-5" *ngFor="let pItem of allProduct">
+        <div class="col-md-3">
+            <img [src]="pItem.product.imageCover" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+            <p>{{pItem.product.title}}</p>
+            <p>{{pItem.product.category.name}}</p>
+            <p class="fs-6 text-muted">count:{{pItem.count}}</p>
+            <p class="fs-6 text-muted">price:{{pItem.price}}</p>
+            <i class="fa-solid fa-trash fs-5 text-danger cursor-pointer" (click)="deleteProduct(pItem.product._id)"></i>
+        </div>
+        <div class="col-md-3 offset-md-3 d-flex gap-3 d-flex align-items-center">
+            <i class="fa-solid fa-square-minus text-danger cursor-pointer align-items-center fs-3" (click)="updateProduct(pItem.product._id,pItem.count-1)"></i>
+             <h5 class="fw-bold">1</h5>
+            <i class="fa-solid fa-square-plus text-success cursor-pointer align-items-center fs-3" (click)="updateProduct(pItem.product._id,pItem.count+1)"></i>
+        </div>
+    </div>
+    <div class="loadingScreen" *ngIf="loading">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+
+</div>
